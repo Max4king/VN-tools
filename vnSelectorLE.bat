@@ -35,5 +35,5 @@ echo "!name!"
 
 start "" "!LE!" "!name!"
 echo Enjoy Your VN :D
-pause
-rem TIMEOUT /T 5
+
+TIMEOUT /T 5
