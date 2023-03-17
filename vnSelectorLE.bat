@@ -33,7 +33,7 @@ if exist "!name!" (
 rem Change the PATH to your own directory
 echo "!name!"
 
-start "" "!LE!" "!name!"
-echo Enjoy Your VN :D
+start "" "!LE!" "!name!" && start cmd /c "echo  echo Enjoy Your VN :D && echo  && timeout /t 3 > nul" && exit
 
-TIMEOUT /T 5
+rem extra exit just incase.
+exit
