@@ -4,6 +4,7 @@ setlocal enabledelayedexpansion
 rem %~dp0 for current directory that this batch is at
 rem Change it to your own directory where you store your VN shortcut
 rem ex: D:\Games\VN Selection\
+rem You should have the slash (\) at the end to make it work
 set "folder=%~dp0"
 
 rem Change this is Your own location. This is the Default One
