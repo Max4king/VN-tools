@@ -1,5 +1,6 @@
 import os
 import subprocess
+
 # uncomment this to use the first option of finding the path using wsl
 # from win32com.client import Dispatch
 import psutil
@@ -7,8 +8,8 @@ import time
 import pylnk3
 
 # Set file paths
-folder = "C:/Games/VN/VN-collection"
-LE = "C:/Users/Game/Documents/Locale.Emulator.2.5.0.1/LEProc.exe"
+folder = "C:/Games/VN/VN-collection" # Change this your own
+LE = "C:/Users/Game/Documents/Locale.Emulator.2.5.0.1/LEProc.exe" # This assume you put all the program in the Document
 tractor = "C:/Users/Game/Documents/Textractor/x86/Textractor.exe"
 subfolder = os.path.join(folder, "deeper")
 
@@ -16,6 +17,7 @@ subfolder = os.path.join(folder, "deeper")
 def get_lnk_target(lnk_path):
     lnk = pylnk3.Lnk(lnk_path)
     return lnk.path
+
 
 def is_process_running(process_name):
     for proc in psutil.process_iter(['name']):
@@ -50,6 +52,7 @@ try:
         print(f"{i + 1}. {os.path.basename(file)}")
 
     choice = input("Enter file number: ") #  Cutout feature or type 'deeper' for more options
+
     while True:
         if choice.lower() == 'deeper':
             for i, file in enumerate(files):
