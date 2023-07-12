@@ -7,12 +7,14 @@ import psutil
 import time
 import pylnk3
 
+# Change these value below to fit your need
+####################################################
 # Set file paths
-folder = "C:/Games/VN/VN-collection" # Change this your own
+folder = "C:/Games/VN/VN-collection" # Change this your own. Where you keep your VN shortcut.
 LE = "C:/Users/Game/Documents/Locale.Emulator.2.5.0.1/LEProc.exe" # This assume you put all the program in the Document
-tractor = "C:/Users/Game/Documents/Textractor/x86/Textractor.exe"
+tractor = "C:/Users/Game/Documents/Textractor/x86/Textractor.exe" # Where you put your Textractor
 subfolder = os.path.join(folder, "deeper")
-
+####################################################
 
 def get_lnk_target(lnk_path):
     lnk = pylnk3.Lnk(lnk_path)
