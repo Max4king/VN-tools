@@ -22,7 +22,7 @@ I have just made a python version of the program so that it is easier to read an
   3.1 folder : where you keep all the shortcut file of the VN.
   3.2 LE     : where you put your Locale Emulator.
   3.3 tractor: where you put your Textractor.(x86)
-5. (Optional): Use the NewVNSel.bat if you cannot double click to run the VNSelLE.py or what a quick way to run the script from the desktop. Make sure to change the path to match where you put the VNSelLE.py.  
+5. !Recommended! (Optional): Use the NewVNSel.bat if you cannot double click to run the VNSelLE.py or what a quick way to run the script from the desktop. Make sure to change the path to match where you put the VNSelLE.py.  
  Enjoy!
 
 ## vnSelectorLE (Deprecated and Legacy version)
