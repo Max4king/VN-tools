@@ -3,7 +3,7 @@
 This is where I plan to make my own tools to make playing vn easier.
 
 ## What can this do?
-This program helps you run the VN easier. It runs the Locale Emulator and Textractor within one step. It can also help you organize your VN and japanese locale games alike with an easy to select menu.
+This program helps you run the VN quicker. It runs the Locale Emulator and Textractor within one step. It can also help you organize your VN and japanese locale games alike with an easy to select menu.
 
 ## Goal
 - [x] Add Japanese path support
@@ -34,6 +34,10 @@ I have just made a python version of the program so that it is easier to read an
 5. !Recommended! (Optional): Use the NewVNSel.bat if you cannot double click to run the VNSelLE.py or what a quick way to run the script from the desktop. Make sure to change the path to match where you put the VNSelLE.py.  
  Enjoy!
 6. If you use a bat file, make sure to change all necessary parameter such as paths and others things to make it work.
+
+## The intended paths
+./VN
+| /
 
 ## vnSelectorLE (Deprecated and Legacy version)
 This is used along with Locale Emulator. This BAT script is use to make launching VN a little easier by having a list of vn along with using the Locale Emulator for you without right clicking it everytime.
