@@ -8,7 +8,7 @@ import pylnk3
 import argparse
 
 # Set file paths
-folder = "C:/Games/VN/VN-collection"
+folder = "C:/Games/VN/VN-quick-start"
 LE = "C:/Users/Game/Documents/Locale.Emulator.2.5.0.1/LEProc.exe"
 tractor = "C:/Users/Game/Documents/Textractor/x86/Textractor.exe"
 subfolder = os.path.join(folder, "deeper")
