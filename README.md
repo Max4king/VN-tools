@@ -42,12 +42,14 @@ I have just made a python version of the program so that it is easier to read an
 6. If you use a bat file, make sure to change all necessary parameter such as paths and others things to make it work.
 
 ## The intended paths
-./VN
-| /
+C:Games/
+| VN/ (Place your VN in this folder)
+| | VN-quick-start/ (put the code from the repo here)
+
 
 ## vnSelectorLE (Deprecated and Legacy version)
 This is used along with Locale Emulator. This BAT script is use to make launching VN a little easier by having a list of vn along with using the Locale Emulator for you without right clicking it everytime.
 NOTE: To make this work. You need to make a shortcut to the VN .exe file into one folder. Then you either place the vnSelectorLE inside it or change the directory that the BAT file points to.
 
 ## Disclaimer
-Not all of the file and code are written by me. The texthooker website is from moejapanese way.
+Not all of the file and code are written by me. I merely put together different program into a quick to open way. The texthooker website is from moejapanese way.
