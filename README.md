@@ -14,6 +14,7 @@ This program helps you run the VN quicker. It runs the Locale Emulator and Textr
 ## Goal
 - [x] Add Japanese path support
 - [x] Added auto shortcut creation
+- [ ] shortcut support japanese named exe
 - [ ] Add custom parameter for better usage
 - [ ] Seperate the list with folder i.e. make it so that you can put the shortcut into different folder and organize them better.
 - [ ] Add GUI for ease of use
@@ -22,7 +23,7 @@ Other Tools are coming soon. ETA Forever.
 
 # New Update
 ## update 2
-I have added a way to easily add new shortcut without manually making shortcut for every game.
+I have added a way to easily add new shortcut without manually making shortcut for every game that doesn't have japanese exe name.
 ## update 1
 I have just made a python version of the program so that it is easier to read and manage in the future.
 
@@ -31,8 +32,8 @@ I have just made a python version of the program so that it is easier to read an
 
 1. Download the VNSelLE.py and pylnk3.py and put them in the same folder folder. This folder can be anywhere but I put them together with the shortcut for simplicity.
 2. You have two options:
-2a. Make a shortcut of each of your VN and put them in the same folder. (Traditional but Safe)
-2b. Use the update.bat to automatically make the shortcut. (Experimental but Recommended) 
+2a. Make a shortcut of each of your VN and put them in the same folder. (Traditional but Safe and RECOMMENDED)
+2b. Use the update.bat to automatically make the shortcut. (Experimental and doesn't work for exe with japanese name) 
 3. Now open the VNSelLE.py and change the value of "folder", "LE" and "tractor" to your own path.
   3.1 folder : where you keep all the shortcut file of the VN.
   3.2 LE     : where you put your Locale Emulator.
