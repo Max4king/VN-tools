@@ -12,7 +12,8 @@ folder = "C:/Games/VN/VN-collection"
 LE = "C:/Users/Game/Documents/Locale.Emulator.2.5.0.1/LEProc.exe"
 tractor = "C:/Users/Game/Documents/Textractor/x86/Textractor.exe"
 subfolder = os.path.join(folder, "deeper")
-
+firefox_path = "C:/Program Files/Mozilla Firefox/firefox.exe"
+html_file_path = folder + "/TexthookerOffline/TextHooker.htm"
 
 def get_lnk_target(lnk_path):
     lnk = pylnk3.Lnk(lnk_path)
@@ -67,6 +68,8 @@ def main():
                 print("Invalid input.")
                 choice = input("Enter file number: ")
 
+        
+
         # 1. Get the target path of the chosen shortcut (WSL version)
         # shell = Dispatch('WScript.Shell')
         # shortcut = shell.CreateShortcut(files[choice])
@@ -103,6 +106,7 @@ def main():
                     print("Starting Textractor...")
                     textractor_process = subprocess.Popen([tractor, '-p' + str(game_pid)], stdout=subprocess.DEVNULL)
                     print("Textractor Started.")
+                    texthooker_browser = subprocess.run([firefox_path, html_file_path])
             elif game_process is not None:
                 for i in range(3):
                     print("Finding pid of the VN again...")
@@ -130,6 +134,8 @@ def main():
             if textractor_process is not None:
                 textractor_process.terminate()
                 print("Textractor terminated.")
+                texthooker_browser.terminate()
+                print("Closing the texthooker.")
         except Exception as e:
                 print("Textractor was not running.")
     except Exception as e:
