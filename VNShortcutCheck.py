@@ -46,7 +46,7 @@ def create_shortcut(target, lnk_name, arguments=None, description=None,
 
 def main():
     base_dir = Path(__file__).parent.parent  # This points to the VN folder
-    deeper_folder = base_dir / "VN-collection" / "deeper"
+    deeper_folder = base_dir / "VN-quick-start" / "deeper"
     deeper_folder.mkdir(parents=True, exist_ok=True)  # Ensure the target folder exists
 
     print(f"Searching for .exe files in {base_dir} ...")
