@@ -5,6 +5,12 @@ This is where I plan to make my own tools to make playing vn easier.
 ## What can this do?
 This program helps you run the VN quicker. It runs the Locale Emulator and Textractor within one step. It can also help you organize your VN and japanese locale games alike with an easy to select menu.
 
+## Prerequisite Tools
+- Locale Emulator
+- firefox
+- lap-clipboard-inserter addon (from https://github.com/laplus-sadness/lap-clipboard-inserter or https://addons.mozilla.org/en-US/firefox/addon/lap-clipboard-inserter/)
+- python 3.10 or newer. (This was test on 3.11 but should work for older version)
+
 ## Goal
 - [x] Add Japanese path support
 - [x] Added auto shortcut creation
