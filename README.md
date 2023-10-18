@@ -39,8 +39,8 @@ I have just made a python version of the program so that it is easier to read an
 
 1. Download the VNSelLE.py and pylnk3.py and put them in the same folder folder. This folder can be anywhere but I put them together with the shortcut for simplicity.
 2. You have two options:
-2a. Make a shortcut of each of your VN and put them in the same folder. (Traditional but Safe and RECOMMENDED)
-2b. Use the update.bat to automatically make the shortcut. (Experimental and doesn't work for exe with japanese name) 
+- 2a. Make a shortcut of each of your VN and put them in the same folder. (Traditional but Safe and RECOMMENDED)
+- 2b. Use the update.bat to automatically make the shortcut. (Experimental and doesn't work for exe with japanese character yet) 
 3. Now open the VNSelLE.py and change the value of "folder", "LE" and "tractor" to your own path.
   3.1 folder : where you keep all the shortcut file of the VN.
   3.2 LE     : where you put your Locale Emulator.
