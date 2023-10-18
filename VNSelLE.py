@@ -6,15 +6,16 @@ import psutil
 import time
 import pylnk3
 import argparse
-
+from selenium import webdriver
 # Set file paths
-folder = "C:/Games/VN/VN-quick-start"
+folder = "C:/Games/VN/VN-tools"
 LE = "C:/Users/Game/Documents/Locale.Emulator.2.5.0.1/LEProc.exe"
 tractor = "C:/Users/Game/Documents/Textractor/x86/Textractor.exe"
 subfolder = os.path.join(folder, "deeper")
-firefox_path = "C:/Program Files/Mozilla Firefox/firefox.exe"
+# firefox_path = "C:/Program Files/Mozilla Firefox/firefox.exe"
+# Change to geckodriver to use selenium instead. So I could close the tab of Texthooker on browser
+driver = "C:/Games/VN/VN-tools/geckodriver.exe"
 html_file_path = folder + "/TexthookerOffline/TextHooker.htm"
-
 def get_lnk_target(lnk_path):
     lnk = pylnk3.Lnk(lnk_path)
     return lnk.path
@@ -106,7 +107,8 @@ def main():
                     print("Starting Textractor...")
                     textractor_process = subprocess.Popen([tractor, '-p' + str(game_pid)], stdout=subprocess.DEVNULL)
                     print("Textractor Started.")
-                    texthooker_browser = subprocess.run([firefox_path, html_file_path])
+                    print("Opening the Texthooker on browser...")
+                    driver.get(html_file_path)
             elif game_process is not None:
                 for i in range(3):
                     print("Finding pid of the VN again...")
@@ -134,10 +136,12 @@ def main():
             if textractor_process is not None:
                 textractor_process.terminate()
                 print("Textractor terminated.")
-                texthooker_browser.terminate()
+                driver.close()
                 print("Closing the texthooker.")
         except Exception as e:
-                print("Textractor was not running.")
+                print("WARNIG: Something was not close properly.")
+                print("HINT: If everything except the browser was close, safely ignore the warning above")
+                print("The error message:", e)
     except Exception as e:
         print(f"An error occurred: {e}")
         input("Press Enter to close...")
