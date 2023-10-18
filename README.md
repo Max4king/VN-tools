@@ -10,6 +10,8 @@ This program helps you run the VN quicker. It runs the Locale Emulator and Textr
 - firefox
 - lap-clipboard-inserter addon (from https://github.com/laplus-sadness/lap-clipboard-inserter or https://addons.mozilla.org/en-US/firefox/addon/lap-clipboard-inserter/)
 - python 3.10 or newer. (This was test on 3.11 but should work for older version)
+- Selenium
+  `pip install selenium` 
 
 ## Goal
 - [x] Add Japanese path support
