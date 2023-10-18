@@ -22,6 +22,9 @@ This program helps you run the VN quicker. It runs the Locale Emulator and Textr
 Other Tools are coming soon. ETA Forever.
 
 # New Update
+## update 3
+I finally manage to open a seperate browser and close it automatically. Now, I only need to find a way to turn on the extension automatically. (Ideas: maybe I could modify the extension itself to work automatically. But I don't know Typescript.)
+
 ## update 2
 I have added a way to easily add new shortcut without manually making shortcut for every game that doesn't have japanese exe name.
 ## update 1

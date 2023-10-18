@@ -14,7 +14,7 @@ tractor = "C:/Users/Game/Documents/Textractor/x86/Textractor.exe"
 subfolder = os.path.join(folder, "deeper")
 # firefox_path = "C:/Program Files/Mozilla Firefox/firefox.exe"
 # Change to geckodriver to use selenium instead. So I could close the tab of Texthooker on browser
-driver = webdriver.Firefox(executable_path="C:/Games/VN/VN-tools/geckodriver.exe")
+clipboardAddOn = "C:/Games/VN/VN-tools/clipboard.xpi"
 html_file_path = folder + "/TexthookerOffline/TextHooker.htm"
 def get_lnk_target(lnk_path):
     lnk = pylnk3.Lnk(lnk_path)
@@ -94,7 +94,7 @@ def main():
 
             # Wait for the process to fully launch, adjust time as necessary
             print("Waiting for the VN to launch")
-            time.sleep(3)
+            time.sleep(1)
 
             # Get the PID of the game process
             print("Finding pid of the VN")
@@ -108,7 +108,12 @@ def main():
                     textractor_process = subprocess.Popen([tractor, '-p' + str(game_pid)], stdout=subprocess.DEVNULL)
                     print("Textractor Started.")
                     print("Opening the Texthooker on browser...")
+                    driver = webdriver.Firefox()
+                    driver.install_addon(clipboardAddOn)
+                    print("Browser opened.")
+                    print("Loading the Texthooker on browser...")
                     driver.get(html_file_path)
+                    print("Texthooker opened.")
             elif game_process is not None:
                 for i in range(3):
                     print("Finding pid of the VN again...")
@@ -136,7 +141,7 @@ def main():
             if textractor_process is not None:
                 textractor_process.terminate()
                 print("Textractor terminated.")
-                driver.close()
+                driver.quit()
                 print("Closing the texthooker.")
         except Exception as e:
                 print("WARNIG: Something was not close properly.")
