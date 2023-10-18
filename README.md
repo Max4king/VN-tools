@@ -52,7 +52,7 @@ I have just made a python version of the program so that it is easier to read an
 ## The intended paths
 C:Games/
 | VN/ (Place your VN in this folder)
-| | VN-quick-start/ (put the code from the repo here)
+| | VN-tools/ (put the code from the repo here)
 
 
 ## vnSelectorLE (Deprecated and Legacy version)
