@@ -656,23 +656,18 @@ class PathSegmentEntry(object):
             write_short(0x14, out)  # unknown
             return out.getvalue()
 
-        short_name_len = len(self.short_name) + 1
-        try:
-            self.short_name.encode("ascii")
-            short_name_is_unicode = False
-            short_name_len += short_name_len % 2  # padding
-        except (UnicodeEncodeError, UnicodeDecodeError):
-            short_name_is_unicode = True
-            short_name_len = short_name_len * 2
-            self.type += " (UNICODE)"
+        # Always treat short_name as Unicode
+        short_name_len = (len(self.short_name) + 1) * 2  # each character is 2 bytes in Unicode
+
         write_short(_ENTRY_TYPE_IDS[entry_type], out)
         write_int(self.file_size, out)
         write_dos_datetime(self.modified, out)
         write_short(0x10, out)
-        if short_name_is_unicode:
-            write_cunicode(self.short_name, out)
-        else:
-            write_cstring(self.short_name, out, padding=True)
+
+        # Write short_name as Unicode
+        write_cunicode(self.short_name, out)
+
+        # Followed by writing of full_name
         indicator = 24 + 2 * len(self.short_name)
         write_short(indicator, out)  # size
         write_short(0x03, out)  # version
@@ -687,7 +682,9 @@ class PathSegmentEntry(object):
         write_cunicode(self.full_name, out)
         offset_part2 = 0x0E + short_name_len
         write_short(offset_part2, out)
+
         return out.getvalue()
+
 
     def __str__(self):
         return "<PathSegmentEntry: %s>" % self.full_name
