@@ -49,10 +49,8 @@ I have just made a python version of the program so that it is easier to read an
  Enjoy!
 6. If you use a bat file, make sure to change all necessary parameter such as paths and others things to make it work.
 
-## The intended paths
-C:Games/
-| VN/ (Place your VN in this folder)
-| | VN-tools/ (put the code from the repo here)
+## The example paths
+C:Games/VN(Place your VN in this folder)/VN-tools
 
 
 ## vnSelectorLE (Deprecated and Legacy version)
@@ -60,4 +58,4 @@ This is used along with Locale Emulator. This BAT script is use to make launchin
 NOTE: To make this work. You need to make a shortcut to the VN .exe file into one folder. Then you either place the vnSelectorLE inside it or change the directory that the BAT file points to.
 
 ## Disclaimer
-Not all of the file and code are written by me. I merely put together different program into a quick to open way. The texthooker website is from moejapanese way.
+Not all of the file and code are written by me. I merely put together different program into a quick to open way. The texthooker website is from moejapanese way. The clipboard extension is actually called Lap Clipboard Inserter from laplus-sadness.
