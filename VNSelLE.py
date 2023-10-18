@@ -14,7 +14,7 @@ tractor = "C:/Users/Game/Documents/Textractor/x86/Textractor.exe"
 subfolder = os.path.join(folder, "deeper")
 # firefox_path = "C:/Program Files/Mozilla Firefox/firefox.exe"
 # Change to geckodriver to use selenium instead. So I could close the tab of Texthooker on browser
-driver = "C:/Games/VN/VN-tools/geckodriver.exe"
+driver = webdriver.Firefox(executable_path="C:/Games/VN/VN-tools/geckodriver.exe")
 html_file_path = folder + "/TexthookerOffline/TextHooker.htm"
 def get_lnk_target(lnk_path):
     lnk = pylnk3.Lnk(lnk_path)
@@ -142,7 +142,7 @@ def main():
                 print("WARNIG: Something was not close properly.")
                 print("HINT: If everything except the browser was close, safely ignore the warning above")
                 print("The error message:", e)
-    except Exception as e:
+    except ImportError as e:
         print(f"An error occurred: {e}")
         input("Press Enter to close...")
     
