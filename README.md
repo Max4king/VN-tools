@@ -10,6 +10,10 @@ This program helps you run the VN quicker. It runs the Locale Emulator and Textr
 - firefox
 - lap-clipboard-inserter addon (from https://github.com/laplus-sadness/lap-clipboard-inserter or https://addons.mozilla.org/en-US/firefox/addon/lap-clipboard-inserter/)
 - python 3.10 or newer. (This was test on 3.11 but should work for older version)
+- Selenium
+  ```
+  pip install selenium
+  ``` 
 
 ## Goal
 - [x] Add Japanese path support
@@ -35,8 +39,8 @@ I have just made a python version of the program so that it is easier to read an
 
 1. Download the VNSelLE.py and pylnk3.py and put them in the same folder folder. This folder can be anywhere but I put them together with the shortcut for simplicity.
 2. You have two options:
-2a. Make a shortcut of each of your VN and put them in the same folder. (Traditional but Safe and RECOMMENDED)
-2b. Use the update.bat to automatically make the shortcut. (Experimental and doesn't work for exe with japanese name) 
+- 2a. Make a shortcut of each of your VN and put them in the same folder. (Traditional but Safe and RECOMMENDED)
+- 2b. Use the update.bat to automatically make the shortcut. (Experimental and doesn't work for exe with japanese character yet) 
 3. Now open the VNSelLE.py and change the value of "folder", "LE" and "tractor" to your own path.
   3.1 folder : where you keep all the shortcut file of the VN.
   3.2 LE     : where you put your Locale Emulator.
@@ -45,10 +49,8 @@ I have just made a python version of the program so that it is easier to read an
  Enjoy!
 6. If you use a bat file, make sure to change all necessary parameter such as paths and others things to make it work.
 
-## The intended paths
-C:Games/
-| VN/ (Place your VN in this folder)
-| | VN-quick-start/ (put the code from the repo here)
+## The example paths
+C:Games/VN(Place your VN in this folder)/VN-tools
 
 
 ## vnSelectorLE (Deprecated and Legacy version)
@@ -56,4 +58,4 @@ This is used along with Locale Emulator. This BAT script is use to make launchin
 NOTE: To make this work. You need to make a shortcut to the VN .exe file into one folder. Then you either place the vnSelectorLE inside it or change the directory that the BAT file points to.
 
 ## Disclaimer
-Not all of the file and code are written by me. I merely put together different program into a quick to open way. The texthooker website is from moejapanese way.
+Not all of the file and code are written by me. I merely put together different program into a quick to open way. The texthooker website is from moejapanese way. The clipboard extension is actually called Lap Clipboard Inserter from laplus-sadness.
