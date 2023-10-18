@@ -14,8 +14,13 @@ tractor = "C:/Users/Game/Documents/Textractor/x86/Textractor.exe"
 subfolder = os.path.join(folder, "deeper")
 # firefox_path = "C:/Program Files/Mozilla Firefox/firefox.exe"
 # Change to geckodriver to use selenium instead. So I could close the tab of Texthooker on browser
-clipboardAddOn = "C:/Games/VN/VN-tools/clipboard.xpi"
+# Legacy way of adding extension to firefox
+# clipboardAddOn = "C:/Games/VN/VN-tools/clipboard.xpi"
 html_file_path = folder + "/TexthookerOffline/TextHooker.htm"
+options = webdriver.FirefoxOptions()
+options.add_argument("--profile")
+options.add_argument(folder + "/profile-default")
+
 def get_lnk_target(lnk_path):
     lnk = pylnk3.Lnk(lnk_path)
     return lnk.path
@@ -108,8 +113,7 @@ def main():
                     textractor_process = subprocess.Popen([tractor, '-p' + str(game_pid)], stdout=subprocess.DEVNULL)
                     print("Textractor Started.")
                     print("Opening the Texthooker on browser...")
-                    driver = webdriver.Firefox()
-                    driver.install_addon(clipboardAddOn)
+                    driver = webdriver.Firefox(options=options)
                     print("Browser opened.")
                     print("Loading the Texthooker on browser...")
                     driver.get(html_file_path)
