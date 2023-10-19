@@ -16,7 +16,7 @@ subfolder = os.path.join(folder, "deeper")
 # Change to geckodriver to use selenium instead. So I could close the tab of Texthooker on browser
 # Legacy way of adding extension to firefox
 # clipboardAddOn = "C:/Games/VN/VN-tools/clipboard.xpi"
-html_file_path = folder + "/TexthookerOffline/TextHooker.htm"
+html_file_path = folder + "/TexthookerOffline/TextHooker.html"
 options = webdriver.FirefoxOptions()
 options.add_argument("--profile")
 options.add_argument(folder + "/profile-default")
@@ -146,7 +146,7 @@ def main():
                 textractor_process.terminate()
                 print("Textractor terminated.")
                 driver.quit()
-                print("Closing the texthooker.")
+                print("Closing the texthooker.") 
         except Exception as e:
                 print("WARNIG: Something was not close properly.")
                 print("HINT: If everything except the browser was close, safely ignore the warning above")
