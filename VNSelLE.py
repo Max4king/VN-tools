@@ -7,11 +7,17 @@ import time
 import pylnk3
 import argparse
 from selenium import webdriver
+
+"""
+The 3 paths below are the only ones that need to be changed.
+"""
 # Set file paths
 folder = "C:/Games/VN/VN-tools"
 LE = "C:/Users/Game/Documents/Locale.Emulator.2.5.0.1/LEProc.exe"
 tractor = "C:/Users/Game/Documents/Textractor/x86/Textractor.exe"
 subfolder = os.path.join(folder, "deeper")
+
+
 # firefox_path = "C:/Program Files/Mozilla Firefox/firefox.exe"
 # Change to geckodriver to use selenium instead. So I could close the tab of Texthooker on browser
 # Legacy way of adding extension to firefox
