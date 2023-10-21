@@ -1,5 +1,6 @@
 @echo off
 
+REM You need to chang the path here accordingly 
 set "python_script_path=C:\Games\VN\VN-tools\VNSelLE.py"
 
 rem Check if Python script exists
