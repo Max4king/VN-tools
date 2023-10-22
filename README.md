@@ -25,16 +25,10 @@ This program helps you run the VN quicker. It runs the Locale Emulator and Textr
 
 Other Tools are coming soon. ETA Forever.
 
-# New Update
-## update 3
-I finally manage to open a seperate browser and close it automatically. Now, I only need to find a way to turn on the extension automatically. (Ideas: maybe I could modify the extension itself to work automatically. But I don't know Typescript.)
-
-## update 2
-I have added a way to easily add new shortcut without manually making shortcut for every game that doesn't have japanese exe name.
-## update 1
-I have just made a python version of the program so that it is easier to read and manage in the future.
-
-
+# Related Video
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=v=R-oTW-rFl1M&t=2s
+" target="_blank"><img src="http://img.youtube.com/vi/v=R-oTW-rFl1M&t=2s/0.jpg" 
+alt="Video tutorial for the tools" width="240" height="180" border="10" /></a>
 # Guide
 
 1. Download the VNSelLE.py and pylnk3.py and put them in the same folder folder. This folder can be anywhere but I put them together with the shortcut for simplicity.
@@ -52,6 +46,14 @@ I have just made a python version of the program so that it is easier to read an
 ## The example paths
 C:Games/VN(Place your VN in this folder)/VN-tools
 
+# New Update
+## update 3
+I finally manage to open a seperate browser and close it automatically. Now, I only need to find a way to turn on the extension automatically. (Ideas: maybe I could modify the extension itself to work automatically. But I don't know Typescript.)
+
+## update 2
+I have added a way to easily add new shortcut without manually making shortcut for every game that doesn't have japanese exe name.
+## update 1
+I have just made a python version of the program so that it is easier to read and manage in the future.
 
 ## vnSelectorLE (Deprecated and Legacy version)
 This is used along with Locale Emulator. This BAT script is use to make launching VN a little easier by having a list of vn along with using the Locale Emulator for you without right clicking it everytime.
