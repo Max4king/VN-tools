@@ -26,9 +26,10 @@ This program helps you run the VN quicker. It runs the Locale Emulator and Textr
 Other Tools are coming soon. ETA Forever.
 
 # Related Video
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=v=R-oTW-rFl1M&t=2s
-" target="_blank"><img src="http://img.youtube.com/vi/v=R-oTW-rFl1M&t=2s/0.jpg" 
-alt="Video tutorial for the tools" width="240" height="180" border="10" /></a>
+
+[![Video tutorial for the tool](https://img.youtube.com/vi/R-oTW-rFl1M?si=v4brWgZpVaLw5T4u/default.jpg)]([https://youtu.be/nTQUwghvy5Q](https://youtu.be/R-oTW-rFl1M?si=v4brWgZpVaLw5T4u))
+
+
 # Guide
 
 1. Download the VNSelLE.py and pylnk3.py and put them in the same folder folder. This folder can be anywhere but I put them together with the shortcut for simplicity.
