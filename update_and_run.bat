@@ -1,7 +1,7 @@
 @echo off
-
-set "python_update_path=C:\Games\VN\VN-tools\VNShortcutCheck.py"
-set "python_script_path=C:\Games\VN\VN-tools\VNSelLE.py"
+chcp 65001
+set "python_update_path=D:\Games\VN\VN-tools\VNShortcutCheck.py"
+set "python_script_path=D:\Games\VN\VN-tools\VNSelLE.py"
 rem Check if Python script exists
 if not exist "%python_script_path%" (
     echo Python script not found: %python_script_path%

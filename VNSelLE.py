@@ -1,4 +1,6 @@
 import os
+from pathlib import Path
+import json
 import subprocess
 # uncomment this to use the first option of finding the path using wsl
 # from win32com.client import Dispatch
@@ -12,7 +14,7 @@ from selenium import webdriver
 The 3 paths below are the only ones that need to be changed.
 """
 # Set file paths
-folder = "C:/Games/VN/VN-tools"
+folder = "D:/Games/VN/VN-tools"
 LE = "C:/Users/Game/Documents/Locale.Emulator.2.5.0.1/LEProc.exe"
 tractor = "C:/Users/Game/Documents/Textractor/x86/Textractor.exe"
 subfolder = os.path.join(folder, "deeper")
@@ -38,6 +40,7 @@ def is_process_running(process_name):
     return False
 
 
+
 def get_pid(process_name):
     for proc in psutil.process_iter(['name', 'pid']):
         if proc.info['name'] == process_name:
@@ -54,27 +57,41 @@ for path in [folder, LE, tractor]:
 def main():
     try:
         # Get list of .lnk files in current directory
-        files = []
-        for root, dirs, filenames in os.walk(folder):
-            for filename in filenames:
-                if filename.endswith(".lnk"):
-                    normalized_filename = os.path.normpath(filename)
-                    files.append(os.path.join(root, normalized_filename))
-        num = 0
-        # Display list of files and prompt user to choose one
-        for i, file in enumerate(files):
-            num += 1
-            file_name = os.path.basename(file).split(".")[0]
-            print(f"{i + 1}. {file_name}")
+        # files = []
 
+        # 1. Get all .lnk files in the folder
+        # for root, dirs, filenames in os.walk(folder):
+        #     for filename in filenames:
+        #         if filename.endswith(".lnk"):
+        #             normalized_filename = os.path.normpath(filename)
+        #             files.append(os.path.join(root, normalized_filename))
+        # Display list of files and prompt user to choose one
+        # num = 0
+        # for i, file in enumerate(files):
+        #     num += 1
+        #     file_name = os.path.basename(file).split(".")[0]
+        #     print(f"{i + 1}. {file_name}")
+
+        json_file_path = Path(__file__).parent / "VNList.json"
+        if not json_file_path.exists():
+            print("No JSON file found.")
+            subprocess.run(["update.bat"], cwd=Path(__file__).parent)
+            print("JSON file updated.")
+        with open(json_file_path, "r") as f:
+            vnList = json.load(f)
+
+        for i, vn in enumerate(vnList["VNList"]):
+            print(f"{i + 1}. {vn['name']}")
         choice = input("Enter file number: ") #  Cutout feature or type 'deeper' for more options
         while True:
             if choice.isdigit():
                 choice = int(choice) - 1
-                if (choice >= num or choice < 0):
+                if choice >= len(vnList["VNList"]) or choice < 0:
                     print("Invalid number.")
                     choice = input("Enter file number: ")
                 else:
+                    selected_vn = vnList["VNList"][choice]
+                    print(f"You've selected {selected_vn['name']} with path {selected_vn['path']}")
                     break
             else:
                 print("Invalid input.")
@@ -89,9 +106,13 @@ def main():
         # print(f"Target Path: {target_path}")
         
         # 2. Get the target path of the chosen shortcut (pylnk3 version)
-        target_path = get_lnk_target(files[choice])
-        print(f"Target Path: {target_path}")
-        game_process = None
+        # target_path = get_lnk_target(files[choice])
+        # print(f"Target Path: {target_path}")
+        # game_process = None
+
+        # 3. Get the target path of the chosen executable
+        target_path = selected_vn['path']
+
         # Try to check if target_path exists
         if target_path is not None and os.path.exists(target_path):
             print("The target path exists.")
@@ -100,7 +121,7 @@ def main():
             except Exception as e:
                 print(f"Error while launching the game: {e}")
             # Start the chosen program
-            print(f"Running: {files[choice]}")
+            print("Running: " + selected_vn["name"])
             
 
             # Wait for the process to fully launch, adjust time as necessary
@@ -144,10 +165,10 @@ def main():
         else:
             print("The target path does not exist.")
             
-        while game_process.poll() is None:
-            time.sleep(1)  # sleep for a while to reduce CPU usage
-        print("Game process terminated. Terminating Textractor...")
         try:
+            while game_process.poll() is None:
+                time.sleep(1)  # sleep for a while to reduce CPU usage
+            print("Game process terminated. Terminating Textractor...")
             if textractor_process is not None:
                 textractor_process.terminate()
                 print("Textractor terminated.")
