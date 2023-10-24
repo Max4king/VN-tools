@@ -4,3 +4,5 @@ deeper
 profile-default/*
 profile-default
 *.7z
+VNList.json
+VNList_backup.json
