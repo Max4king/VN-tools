@@ -6,3 +6,8 @@ profile-default
 *.7z
 VNList.json
 VNList_backup.json
+build
+dist
+venv
+*.spec
+*.txt
