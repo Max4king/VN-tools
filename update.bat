@@ -1,6 +1,6 @@
 @echo off
 chcp 65001
-set "python_update_path=D:\Games\VN\VN-tools\VNShortcutCheck.py"
+set "python_update_path=VNShortcutCheck.py"
 if not exist "%python_update_path%" (
     echo Python script not found: %python_update_path%
 	timeout /t 3 /nobreak > NUL
