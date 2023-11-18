@@ -8,7 +8,7 @@ def is_uninstaller(filename):
     """
     Check if the filename suggests it's an uninstaller.
     """
-    uninstaller_keywords = ["_uninst", "_uninstall", "uninst_", "uninstall_", "unins000"]
+    uninstaller_keywords = ["_uninst", "_uninstall", "uninst_", "uninstall_", "unins000", "Textractor", "TextractorCLI"]
     for keyword in uninstaller_keywords:
         if keyword in filename.lower():
             return True
@@ -47,7 +47,10 @@ def is_uninstaller(filename):
 
 def find_all_exe(folder):
     files = []
+    exception_folder = ["Locale.Emulator.2.5.0.1","Textractor","TexthookerOffline", "VN-tools"]
     for root, dirs, filenames in os.walk((folder)): # os.path.dirname
+        if any(x in root for x in exception_folder):
+            continue        
         for filename in filenames:
             if filename.endswith(".exe") and not is_uninstaller(filename):
                 normalized_filename = os.path.normpath(filename)
