@@ -2,11 +2,13 @@
 
 This is where I plan to make my own tools to make playing vn easier.
 
+P.S. It could also be used as a quick installer.
+
 ## What can this do?
 This program helps you run the VN quicker. It runs the Locale Emulator and Textractor within one step. It can also help you organize your VN and japanese locale games alike with an easy to select menu.
 
 ## Prerequisite Tools
-- Locale Emulator
+- Locale Emulator(Already packaged in teh repo)
 - firefox
 - lap-clipboard-inserter addon (from https://github.com/laplus-sadness/lap-clipboard-inserter or https://addons.mozilla.org/en-US/firefox/addon/lap-clipboard-inserter/)
 - python 3.10 or newer. (This was test on 3.11 but should work for older version)
@@ -20,12 +22,16 @@ This program helps you run the VN quicker. It runs the Locale Emulator and Textr
 - [x] Added auto shortcut creation
 - [ ] shortcut support japanese named exe
 - [ ] Add custom parameter for better usage
-- [ ] Seperate the list with folder i.e. make it so that you can put the shortcut into different folder and organize them better.
+- [ ] ~~Seperate the list with folder i.e. make it so that you can put the shortcut into different folder and organize them better.~~
 - [ ] Add GUI for ease of use
 
 Other Tools are coming soon. ETA Forever.
 
 # New Update
+## update 4
+I have change to using relative paths instead. Now you don't need to chnage all the file path everytime you move the folder. And you don't even need to be the same path as me anymore.
+I have also added the textractor and Locale Emulator directly. You only need to install the locale emulator now. This is almost a one click installer now.
+
 ## update 3
 I finally manage to open a seperate browser and close it automatically. Now, I only need to find a way to turn on the extension automatically. (Ideas: maybe I could modify the extension itself to work automatically. But I don't know Typescript.)
 
@@ -50,7 +56,7 @@ I have just made a python version of the program so that it is easier to read an
 6. If you use a bat file, make sure to change all necessary parameter such as paths and others things to make it work.
 
 ## The example paths
-C:Games/VN(Place your VN in this folder)/VN-tools
+~~C:Games/VN(Place your VN in this folder)/VN-tools~~
 
 
 ## vnSelectorLE (Deprecated and Legacy version)
