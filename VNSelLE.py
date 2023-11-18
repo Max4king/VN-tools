@@ -14,7 +14,7 @@ from selenium import webdriver
 The 3 paths below are the only ones that need to be changed.
 """
 # Set file paths
-folder = "./VN-tools"
+folder = "../VN-tools"
 LE = "Locale.Emulator.2.5.0.1/LEProc.exe"
 tractor = "Textractor/x86/Textractor.exe"
 subfolder = os.path.join(folder, "deeper")
