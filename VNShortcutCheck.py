@@ -1,8 +1,7 @@
 import os, json
 from pathlib import Path
 from shutil import copyfile
-# import sys
-# from pylnk3 import cli
+
 
 def is_uninstaller(filename):
     """
