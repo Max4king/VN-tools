@@ -2,11 +2,12 @@ import tkinter as tk
 import VNSelLE
 import VNShortcutCheck
 import os,json, sys
+from pathlib import Path
 # Set file paths
-folder = "../VN-tools"
-LE = "Locale.Emulator.2.5.0.1/LEProc.exe"
-tractor = "Textractor/x86/Textractor.exe"
-
+folder = Path(__file__).parent
+LE = folder / "Locale.Emulator.2.5.0.1/LEProc.exe"
+tractor = folder / "Textractor/x86/Textractor.exe"
+json_file_path = folder / "VNList.json"
 root = tk.Tk()
 
 root.title("Visual Novel Selector")
@@ -16,7 +17,6 @@ def update_list():
     VNShortcutCheck.main()
 
     # Read the updated VNList.json file
-    json_file_path = "./VNList.json"
     with open(json_file_path, "r") as file:
         vn_list = json.load(file)
 
@@ -33,8 +33,6 @@ def run_selected_item():
         return
     selected_item = listbox.get(selected_index[0])
 
-    # Find the path of the selected VN from VNList.json
-    json_file_path = "./VNList.json"
     with open(json_file_path, "r") as file:
         vn_list = json.load(file)
         selected_vn_path = next((vn["path"] for vn in vn_list["VNList"] if vn["name"] == selected_item), None)
@@ -57,7 +55,7 @@ center_x = int(screen_width/2 - window_width / 2)
 center_y = int(screen_height/2 - window_height / 2)
 root.geometry(f'{window_width}x{window_height}+{center_x}+{center_y}')
 
-root.attributes('-topmost', 1)
+# root.attributes('-topmost', 1)
 
 button_update = tk.Button(root, text="Update List", command=update_list)
 button_update.pack()
@@ -70,9 +68,8 @@ button_run.pack()
 
 for path in [folder, LE, tractor]:
         if not os.path.exists(path):
-            print(f"Path not found: {path}")
+            print(f"(GUI)Path not found: {path}")
             sys.exit()
-json_file_path = "./VNList.json"
 if os.path.exists(json_file_path):
     with open(json_file_path, "r") as file:
         vn_list = json.load(file)
