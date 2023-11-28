@@ -23,11 +23,18 @@ This program helps you run the VN quicker. It runs the Locale Emulator and Textr
 - [ ] shortcut support japanese named exe
 - [ ] Add custom parameter for better usage
 - [ ] ~~Seperate the list with folder i.e. make it so that you can put the shortcut into different folder and organize them better.~~
-- [ ] Add GUI for ease of use
+- [x] Add GUI for ease of use
 
 Other Tools are coming soon. ETA Forever.
 
+
 # New Update
+## update 5
+I have added GUI support to the program now. You can now use the GUI instead on the command line. Though it is a bit unstable. But it is usable now. It is in the v4.0 GUI-alpha release. Use the command below in the folder to run it.
+```
+python mainGUI.py
+```
+
 ## update 4
 I have change to using relative paths instead. Now you don't need to chnage all the file path everytime you move the folder. And you don't even need to be the same path as me anymore.
 I have also added the textractor and Locale Emulator directly. You only need to install the locale emulator now. This is almost a one click installer now.
@@ -40,8 +47,51 @@ I have added a way to easily add new shortcut without manually making shortcut f
 ## update 1
 I have just made a python version of the program so that it is easier to read and manage in the future.
 
+# NEW GUIDE (V3 and V4 release)
 
-# Guide
+1. Install the locale emulator first. 
+
+2. Clone this repo or download from the release. It is recommended to download from the release as it is more stable.
+```
+git clone https://github.com/maxkingCS/VN-tools.git
+```
+3. Extract the .zip file into your VN folder. The VN-tools should now be next to the other VN games. Assuming you got it from the release( Either v4.0 GUI-alpha or v3.0 beta as the time of writing). 
+4. Now install selenium.
+```
+pip install selenium
+```
+
+Then get your firefox profile with all extension installed(More info at the NOTE below):
+```
+%appdata%
+AppData\Roaming\Mozilla\Firefox\Profiles # Go to this relative path
+```
+Then Copy the folder with "default-release" at the end to the VN-tools folder. Rename the profile folder to "profile-default".
+
+* follow 'a' version for V3 and 'b' version for V4.
+
+5a. Run your update list for the first time. This allows the program to store all the VN paths to the executable.(See NOTE below for more info) Use the "update.bat". You should now have VNList.json in the VN-tools folder.
+
+6a. Now you can run the program with the runVN.bat or
+```
+python VNSelLE.py
+```
+5b. Now run the mainGUI.py:
+```
+python mainGUI.py
+```
+6b. For the first time, you would not see anything in the list. Now click the "Update List" button at the top. It should now refresh with all your VN in a list.
+
+7b. You can click on one of the name and Press "Run Selected" to start the game.
+
+That is it. Just use step 5b whenever you want to run the program.
+
+NOTE: All the VN should be in the VN folder.
+
+The firefox profile must have yomichan and lap-clipboard-inserter extension installed already or install it into the profile later(not test on the second option). yomichan should already be installed with dictionary.
+See this for instrction on yomichan: https://learnjapanese.moe/yomichan/
+
+# OLD Guide (V2 and below release)
 
 1. Download the VNSelLE.py and pylnk3.py and put them in the same folder folder. This folder can be anywhere but I put them together with the shortcut for simplicity.
 2. You have two options:
@@ -57,11 +107,9 @@ I have just made a python version of the program so that it is easier to read an
 
 ## The example paths
 ~~C:Games/VN(Place your VN in this folder)/VN-tools~~
-
-
-## vnSelectorLE (Deprecated and Legacy version)
-This is used along with Locale Emulator. This BAT script is use to make launching VN a little easier by having a list of vn along with using the Locale Emulator for you without right clicking it everytime.
-NOTE: To make this work. You need to make a shortcut to the VN .exe file into one folder. Then you either place the vnSelectorLE inside it or change the directory that the BAT file points to.
+VN/VN-tools/
+local-emulator
+the rest of the file.
 
 ## Disclaimer
 Not all of the file and code are written by me. I merely put together different program into a quick to open way. The texthooker website is from moejapanese way. The clipboard extension is actually called Lap Clipboard Inserter from laplus-sadness.

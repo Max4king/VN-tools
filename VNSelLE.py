@@ -8,16 +8,19 @@ import threading
 from selenium import webdriver
 
 # Set file paths
-folder = "../VN-tools"
-LE = "Locale.Emulator.2.5.0.1/LEProc.exe"
-tractor = "Textractor/x86/Textractor.exe"
+folder = Path(__file__).parent
+LE = folder / "Locale.Emulator.2.5.0.1/LEProc.exe"
+tractor = folder / "Textractor/x86/Textractor.exe"
 
-
-html_file_path = "TexthookerOffline/TextHooker.html"
-html_file_path = Path(html_file_path).resolve().as_uri()
+# GOAL "C://Games/VN/VN-tools/TexthookerOffline/TextHooker.html"
+html_file_path = folder / "TexthookerOffline" / "TextHooker.html"
+# html_file_path = Path(html_file_path)
+# Example of using the path as a string
+html_file_path = str(html_file_path)
 options = webdriver.FirefoxOptions()
 options.add_argument("--profile")
-options.add_argument(folder + "/profile-default")
+profile_path = str(folder / "profile-default")
+options.add_argument(profile_path)
 
 
 def is_process_running(process_name):
@@ -46,15 +49,17 @@ def run_vn(target_path):
             game_pid = get_pid(os.path.basename(target_path))
             textractor_process = None
             if game_pid is not None:
+                print("Game PID found")
                 if not is_process_running('Textractor.exe'):
+                    
                     textractor_process = subprocess.Popen([tractor, '-p' + str(game_pid)], stdout=subprocess.DEVNULL)
                     print("Textractor started.")
                     driver = webdriver.Firefox(options=options)
                     driver.get(html_file_path)
                     print("Texthooker opened.")
-            
+                    
             while game_process.poll() is None:
-                time.sleep(1)  # Sleep to reduce CPU usage
+                time.sleep(0.5)  # Sleep to reduce CPU usage
             
             if textractor_process is not None:
                 textractor_process.terminate()
@@ -104,7 +109,8 @@ if __name__ == "__main__":
     # Check if paths exist
     for path in [folder, LE, tractor]:
         if not os.path.exists(path):
-            print(f"Path not found: {path}")
+
+            print(f"(CLI)Path not found: {path}")
             exit()
     main()
     print("Quitting...")
