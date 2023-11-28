@@ -41,11 +41,9 @@ I have also added the textractor and Locale Emulator directly. You only need to 
 
 ## update 3
 I finally manage to open a seperate browser and close it automatically. Now, I only need to find a way to turn on the extension automatically. (Ideas: maybe I could modify the extension itself to work automatically. But I don't know Typescript.)
+=======
 
-## update 2
-I have added a way to easily add new shortcut without manually making shortcut for every game that doesn't have japanese exe name.
-## update 1
-I have just made a python version of the program so that it is easier to read and manage in the future.
+[![Video tutorial for the tool](https://img.youtube.com/vi/R-oTW-rFl1M?si=v4brWgZpVaLw5T4u/default.jpg)]([https://youtu.be/nTQUwghvy5Q](https://youtu.be/R-oTW-rFl1M?si=v4brWgZpVaLw5T4u))
 
 # NEW GUIDE (V3 and V4 release)
 
@@ -106,6 +104,7 @@ See this for instrction on yomichan: https://learnjapanese.moe/yomichan/
 6. If you use a bat file, make sure to change all necessary parameter such as paths and others things to make it work.
 
 ## The example paths
+
 ~~C:Games/VN(Place your VN in this folder)/VN-tools~~
 VN/VN-tools/
 local-emulator
