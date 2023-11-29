@@ -11,4 +11,4 @@ dist
 venv
 *.spec
 *.txt
-SavedGames.txt
+Textractor
