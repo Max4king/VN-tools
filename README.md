@@ -29,6 +29,9 @@ Other Tools are coming soon. ETA Forever.
 
 
 # New Update
+## update 6
+Fix relative Paths problem in the firefox's texthooker path when using the Path or pathlib thing.
+
 ## update 5
 I have added GUI support to the program now. You can now use the GUI instead on the command line. Though it is a bit unstable. But it is usable now. It is in the v4.0 GUI-alpha release. Use the command below in the folder to run it.
 ```
