@@ -1,5 +1,5 @@
 @echo off
-
+chcp 65001
 REM You need to chang the path here accordingly 
 set "python_script_path=C:\Games\VN\VN-tools\VNSelLE.py"
 

@@ -1,35 +1,27 @@
 import os
+from pathlib import Path
+import json
 import subprocess
-# uncomment this to use the first option of finding the path using wsl
-# from win32com.client import Dispatch
 import psutil
 import time
-import pylnk3
-import argparse
+import threading
 from selenium import webdriver
 
-"""
-The 3 paths below are the only ones that need to be changed.
-"""
 # Set file paths
-folder = "C:/Games/VN/VN-tools"
-LE = "C:/Users/Game/Documents/Locale.Emulator.2.5.0.1/LEProc.exe"
-tractor = "C:/Users/Game/Documents/Textractor/x86/Textractor.exe"
-subfolder = os.path.join(folder, "deeper")
+folder = Path(__file__).parent
+LE = folder / "Locale.Emulator.2.5.0.1/LEProc.exe"
+tractor = folder / "Textractor/x86/Textractor.exe"
 
-
-# firefox_path = "C:/Program Files/Mozilla Firefox/firefox.exe"
-# Change to geckodriver to use selenium instead. So I could close the tab of Texthooker on browser
-# Legacy way of adding extension to firefox
-# clipboardAddOn = "C:/Games/VN/VN-tools/clipboard.xpi"
-html_file_path = folder + "/TexthookerOffline/TextHooker.html"
+# GOAL "C://Games/VN/VN-tools/TexthookerOffline/TextHooker.html"
+html_file_path = folder / "TexthookerOffline" / "TextHooker.html"
+# html_file_path = Path(html_file_path)
+# Example of using the path as a string
+html_file_path = str(html_file_path)
 options = webdriver.FirefoxOptions()
 options.add_argument("--profile")
-options.add_argument(folder + "/profile-default")
+profile_path = str(folder / "profile-default")
+options.add_argument(profile_path)
 
-def get_lnk_target(lnk_path):
-    lnk = pylnk3.Lnk(lnk_path)
-    return lnk.path
 
 def is_process_running(process_name):
     for proc in psutil.process_iter(['name']):
@@ -37,132 +29,88 @@ def is_process_running(process_name):
             return True
     return False
 
-
 def get_pid(process_name):
     for proc in psutil.process_iter(['name', 'pid']):
         if proc.info['name'] == process_name:
             return proc.info['pid']
     return None
 
-# Check if paths exist
-for path in [folder, LE, tractor]:
-    if not os.path.exists(path):
-        print(f"Path not found: {path}")
-        exit()
-
-
-def main():
+def run_vn(target_path):
     try:
-        # Get list of .lnk files in current directory
-        files = []
-        for root, dirs, filenames in os.walk(folder):
-            for filename in filenames:
-                if filename.endswith(".lnk"):
-                    normalized_filename = os.path.normpath(filename)
-                    files.append(os.path.join(root, normalized_filename))
-        num = 0
-        # Display list of files and prompt user to choose one
-        for i, file in enumerate(files):
-            num += 1
-            file_name = os.path.basename(file).split(".")[0]
-            print(f"{i + 1}. {file_name}")
-
-        choice = input("Enter file number: ") #  Cutout feature or type 'deeper' for more options
-        while True:
-            if choice.isdigit():
-                choice = int(choice) - 1
-                if (choice >= num or choice < 0):
-                    print("Invalid number.")
-                    choice = input("Enter file number: ")
-                else:
-                    break
-            else:
-                print("Invalid input.")
-                choice = input("Enter file number: ")
-
-        
-
-        # 1. Get the target path of the chosen shortcut (WSL version)
-        # shell = Dispatch('WScript.Shell')
-        # shortcut = shell.CreateShortcut(files[choice])
-        # target_path = shortcut.Targetpath
-        # print(f"Target Path: {target_path}")
-        
-        # 2. Get the target path of the chosen shortcut (pylnk3 version)
-        target_path = get_lnk_target(files[choice])
-        print(f"Target Path: {target_path}")
-        game_process = None
-        # Try to check if target_path exists
         if target_path is not None and os.path.exists(target_path):
             print("The target path exists.")
-            try:
-                game_process = subprocess.Popen([LE, target_path], creationflags=subprocess.CREATE_NEW_PROCESS_GROUP)
-            except Exception as e:
-                print(f"Error while launching the game: {e}")
-            # Start the chosen program
-            print(f"Running: {files[choice]}")
-            
+            game_process = subprocess.Popen([LE, target_path], creationflags=subprocess.CREATE_NEW_PROCESS_GROUP)
+            print("Running: " + os.path.basename(target_path))
 
             # Wait for the process to fully launch, adjust time as necessary
-            print("Waiting for the VN to launch")
             time.sleep(1)
 
             # Get the PID of the game process
-            print("Finding pid of the VN")
             game_pid = get_pid(os.path.basename(target_path))
             textractor_process = None
-            # If we successfully got the PID, start the tractor program and attach it to the game
             if game_pid is not None:
-                print("VN pid found")
+                print("Game PID found")
                 if not is_process_running('Textractor.exe'):
-                    print("Starting Textractor...")
+                    
                     textractor_process = subprocess.Popen([tractor, '-p' + str(game_pid)], stdout=subprocess.DEVNULL)
-                    print("Textractor Started.")
-                    print("Opening the Texthooker on browser...")
+                    print("Textractor started.")
                     driver = webdriver.Firefox(options=options)
-                    print("Browser opened.")
-                    print("Loading the Texthooker on browser...")
                     driver.get(html_file_path)
                     print("Texthooker opened.")
-            elif game_process is not None:
-                for i in range(3):
-                    print("Finding pid of the VN again...")
-                    game_pid = get_pid(os.path.basename(target_path)) 
-                    if game_pid is not None:
-                        print("VN pid found")
-                        if not is_process_running('Textractor.exe'):
-                            print("Starting Textractor...")
-                            textractor_process = subprocess.Popen([tractor, '-p' + str(game_pid)], stdout=subprocess.DEVNULL)
-                            print("Textractor Started.")
-                        break
-                    else:
-                        print("Unable to find the pid of the VN.")
-                        time.sleep(1)
-            else:
-                print("Unable to find the game pid.")
-                time.sleep(3)
-        else:
-            print("The target path does not exist.")
+                    
+            while game_process.poll() is None:
+                time.sleep(0.5)  # Sleep to reduce CPU usage
             
-        while game_process.poll() is None:
-            time.sleep(1)  # sleep for a while to reduce CPU usage
-        print("Game process terminated. Terminating Textractor...")
-        try:
             if textractor_process is not None:
                 textractor_process.terminate()
                 print("Textractor terminated.")
                 driver.quit()
-                print("Closing the texthooker.") 
-        except Exception as e:
-                print("WARNIG: Something was not close properly.")
-                print("HINT: If everything except the browser was close, safely ignore the warning above")
-                print("The error message:", e)
-    except ImportError as e:
-        print(f"An error occurred: {e}")
-        input("Press Enter to close...")
+                print("Texthooker closed.")
+        else:
+            print("The target path does not exist.")
+    except Exception as e:
+        print(f"Error while running VN: {e}")
+
+def run_vn_threaded(target_path):
+    # Function to run the VN in a separate thread
+    vn_thread = threading.Thread(target=run_vn, args=(target_path,))
+    vn_thread.start()
+
+def main():
+    json_file_path = Path(__file__).parent / "VNList.json"
+    if not json_file_path.exists():
+        print("No JSON file found.")
+        subprocess.run(["update.bat"], cwd=Path(__file__).parent)
+        print("JSON file updated.")
     
+    with open(json_file_path, "r") as f:
+        vnList = json.load(f)
 
+    for i, vn in enumerate(vnList["VNList"]):
+        print(f"{i + 1}. {vn['name']}")
+    choice = input("Enter file number: ")
 
+    while True:
+        if choice.isdigit():
+            choice = int(choice) - 1
+            if choice < 0 or choice >= len(vnList["VNList"]):
+                print("Invalid number.")
+                choice = input("Enter file number: ")
+            else:
+                selected_vn = vnList["VNList"][choice]
+                print(f"You've selected {selected_vn['name']} with path {selected_vn['path']}")
+                run_vn_threaded(selected_vn['path'])
+                break
+        else:
+            print("Invalid input.")
+            choice = input("Enter file number: ")
+    
 if __name__ == "__main__":
+    # Check if paths exist
+    for path in [folder, LE, tractor]:
+        if not os.path.exists(path):
+
+            print(f"(CLI)Path not found: {path}")
+            exit()
     main()
     print("Quitting...")
