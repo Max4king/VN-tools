@@ -4,11 +4,14 @@ This is where I plan to make my own tools to make playing vn easier.
 
 P.S. It could also be used as a quick installer.
 
+## No more update
+This tool will no longer be updated. Since I have manage to setup VN in linux, I no longer use Window for anything else now. I may rewrite the script for linux in the future.
+
 ## What can this do?
 This program helps you run the VN quicker. It runs the Locale Emulator and Textractor within one step. It can also help you organize your VN and japanese locale games alike with an easy to select menu.
 
 ## Prerequisite Tools
-- Locale Emulator(Already packaged in teh repo)
+- Locale Emulator(Already packaged in the repo)
 - firefox
 - lap-clipboard-inserter addon (from https://github.com/laplus-sadness/lap-clipboard-inserter or https://addons.mozilla.org/en-US/firefox/addon/lap-clipboard-inserter/)
 - python 3.10 or newer. (This was test on 3.11 but should work for older version)
